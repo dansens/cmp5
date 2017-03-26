@@ -1,19 +1,7 @@
 define(function() {
     "use strict";
-    /**
-     * @author Cenfun
-     */
-    var $ = window.$;
-
-    //====================================================================================================
-    /**
-     * @constructor
-     * @returns {EventBase}
-     */
-    var EventBase = function() {
-        //depend on jQuery event
-    };
-    EventBase.prototype = {
+    var Extend = require("./extend.js");
+    var EventBase = Extend.extend({
         dispatcher: null,
         getDispatcher: function() {
             if (!this.dispatcher) {
@@ -38,11 +26,9 @@ define(function() {
         },
         trigger: function() {
             var dispatcher = this.getDispatcher();
-            dispatcher.trigger.apply(dispatcher, arguments);
-            return this;
+            return dispatcher.triggerHandler.apply(dispatcher, arguments);
         }
-    };
-
+    });
     return EventBase;
 
 });
